@@ -17,8 +17,14 @@ class CreateUserController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function execute(): string
+    public function execute(Request $request): string
     {
-        return json_encode($this->createUserService->execute());
+        $name = $request->query("name");
+        $password = $request->query("password");
+        $email = $request->query("email");
+        
+        $user = $this->createUserService->execute($name, $password, $email);
+
+        return json_encode($user);
     }
 }

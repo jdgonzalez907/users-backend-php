@@ -12,12 +12,11 @@ class CreateUserService {
         private UserRepository $userRepository,
     ){}
 
-    public function execute(): User {
+    public function execute(string $name, string $password, string $email): User {
         $user = new User();
-        $user->name = 'something';
-        $user->password = Hash::make('userpassword');
-        $num = strval(rand(10, 2000));
-        $user->email = "user$num@user.com";
+        $user->name = $name;
+        $user->password = Hash::make($password);
+        $user->email = $email;
 
         $this->userRepository->create($user);
         

@@ -25,7 +25,7 @@ class CreateUserService {
             'userId' => $user->id
         ]);
 
-        Redis::publish('users-backend-php.user-created', $message);
+        Redis::publish('UserCreated', $message);
         
         return $user;
     }

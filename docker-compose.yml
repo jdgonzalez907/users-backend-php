@@ -1,0 +1,18 @@
+version: '3.3'
+
+services:
+  users-redis:
+    image: redis:7.2.1
+    volumes:
+      - ../users-redis:/data
+    ports:
+      - 6379:6379
+  users-mysql:
+    image: mysql:8.1.0
+    volumes:
+      - ../users-mysql:/var/lib/mysql
+    ports:
+      - 3306:3306
+    environment:
+      - MYSQL_ROOT_PASSWORD=0000
+      - MYSQL_DATABASE=users_mysql

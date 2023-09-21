@@ -33,7 +33,7 @@ class RedisSubscribe extends Command
      */
     public function handle()
     {
-        Redis::subscribe('users-backend-php.user-created', function(string $message) {
+        Redis::subscribe('UserCreated', function(string $message) {
             $userJson = json_decode($message);
             $this->sendEmailCalledWelcomeService->execute($userJson->userId);
         });
